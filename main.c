@@ -4,15 +4,15 @@
 void factorial ();
 void numeroPrimo();
 void anioBisiesto();
+int pasarABinario(int n);
+void estrucBinario();
 
 int main()
 {
-    while(1)
+    char op=99;
+
+    while(op!=5)
     {
-        char op;
-
-
-
         system("cls");
         fflush(stdin);
 
@@ -20,35 +20,44 @@ int main()
         printf("1) Factorial de un numero\n");
         printf("2) Numero primo\n");
         printf("3) Anio bisiesto\n");
-        printf("4) Salir\n");
+        printf("4) Convercion a binario\n");
+        printf("5) Salir\n");
         printf("\nOpcion: ");
         scanf("%c",&op);
-
 
         switch(op)
         {
         case '1':
-
             factorial ();
-
             break;
+
         case '2':
             numeroPrimo();
-
             break;
-
 
         case '3':
-
             anioBisiesto();
-
             break;
+
         case '4':
+            estrucBinario();
+            break;
+
+        case '5':
             printf("\nAdios!!\n");
-            return 0;
+            op=5;
+            break;
+
+        default:
+            printf("Opción incorrecta");
+            break;
         }
-        printf("\nPresione una tecla para volver..");
-        getch();
+
+        if (op!=5)
+        {
+            printf("\nPresione una tecla para volver..");
+            getch();
+        }
     }
     return 0;
 }
@@ -76,7 +85,6 @@ void factorial ()
     printf ("\nSu factorial es %ld\n",fac);
 }
 
-
 void numeroPrimo()
 {
     long int n;
@@ -101,6 +109,7 @@ void numeroPrimo()
         printf ("\nEs primo\n");
     }
 }
+
 void anioBisiesto()
 {
     int anio;
@@ -117,5 +126,29 @@ void anioBisiesto()
     else
     {
         printf("\nNo es bisiesto\n");
+    }
+}
+
+void estrucBinario()
+{
+    int numero;
+    printf("Ingrese un numero: ");
+    scanf("%d",&numero);
+
+    int binario=pasarABinario (numero);
+
+    printf("\nSu binario es: %d\n",binario);
+}
+
+int pasarABinario(int n)
+{
+
+    if(n < 2)
+    {
+        return n;
+    }
+    else
+    {
+        return (n%2 + (10 * pasarABinario(n/2)));
     }
 }
